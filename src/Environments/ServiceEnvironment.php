@@ -28,7 +28,7 @@ class ServiceEnvironment {
 	/**
 	 * @var string
 	 */
-	protected const BASE_URL = 'http://xmldata.epgservice.ru/EPGService/hs/xmldata/%s';
+	protected const BASE_URL = 'http://xmldata.epgservice.ru/EPGService/hs/xmldata/%s/';
 
 	/**
 	 * @var string
