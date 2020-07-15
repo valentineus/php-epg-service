@@ -29,13 +29,17 @@ use PHPUnit\Framework\TestCase;
  * @package   Tests\Environments
  */
 final class ServiceEnvironmentTest extends TestCase {
-	public function testGetUrl(): void {
+	public function testGetUrlWithMethod(): void {
 		$key = Faker::create()->sha256;
 		$method = Faker::create()->sha256;
-
-		$url = ServiceEnvironment::getUrl($key, $method);
-
+		$url = ServiceEnvironment::create($key)->getUrl($method);
 		self::assertStringContainsString($key, $url);
 		self::assertStringContainsString($method, $url);
+	}
+
+	public function testGetUrlWithoutMethod(): void {
+		$key = Faker::create()->sha256;
+		$url = ServiceEnvironment::create($key)->getUrl();
+		self::assertStringContainsString($key, $url);
 	}
 }

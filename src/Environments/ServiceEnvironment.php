@@ -28,15 +28,35 @@ class ServiceEnvironment {
 	/**
 	 * @var string
 	 */
-	private const BASE_URL = 'http://xmldata.epgservice.ru/EPGService/hs/xmldata/%s/%s';
+	protected const BASE_URL = 'http://xmldata.epgservice.ru/EPGService/hs/xmldata/%s/%s';
+
+	/**
+	 * @var string
+	 */
+	private string $key;
 
 	/**
 	 * @param string $key
+	 */
+	protected function __construct(string $key) {
+		$this->key = $key;
+	}
+
+	/**
+	 * @param string $key
+	 *
+	 * @return \EPGService\Environments\ServiceEnvironment
+	 */
+	public static function create(string $key): ServiceEnvironment {
+		return new ServiceEnvironment($key);
+	}
+
+	/**
 	 * @param string $method
 	 *
 	 * @return string
 	 */
-	public static function getUrl(string $key, string $method = ''): string {
-		return sprintf(self::BASE_URL, $key, $method);
+	public function getUrl(string $method = ''): string {
+		return sprintf(self::BASE_URL, $this->key, $method);
 	}
 }
