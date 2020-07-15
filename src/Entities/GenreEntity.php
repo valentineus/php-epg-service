@@ -33,26 +33,26 @@ use function is_string;
  * @license   http://www.apache.org/licenses/LICENSE-2.0
  * @package   EPGService\Entities
  */
-class GenreEntity {
+final class GenreEntity {
 	/**
 	 * @var int
 	 */
-	protected int $id;
+	private int $id;
 
 	/**
 	 * @var string
 	 */
-	protected string $lang;
+	private string $lang;
 
 	/**
 	 * @var string
 	 */
-	protected string $name;
+	private string $name;
 
 	/**
 	 * @var string
 	 */
-	protected string $version;
+	private string $version;
 
 	/**
 	 * @param int    $id
@@ -60,7 +60,7 @@ class GenreEntity {
 	 * @param string $name
 	 * @param string $version
 	 */
-	protected function __construct(int $id, string $lang, string $name, string $version) {
+	private function __construct(int $id, string $lang, string $name, string $version) {
 		$this->id = $id;
 		$this->lang = $lang;
 		$this->name = $name;
