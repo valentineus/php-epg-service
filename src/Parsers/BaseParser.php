@@ -24,13 +24,11 @@ namespace EPGService\Parsers;
  * @license   http://www.apache.org/licenses/LICENSE-2.0
  * @package   EPGService\Parsers
  */
-final class StringParser implements BaseParser {
+interface BaseParser {
 	/**
-	 * @param $value
+	 * @param mixed $value
 	 *
-	 * @return string
+	 * @return mixed
 	 */
-	public static function get($value): string {
-		return filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
-	}
+	public static function get($value);
 }

@@ -24,7 +24,7 @@ namespace EPGService\Parsers;
  * @license   http://www.apache.org/licenses/LICENSE-2.0
  * @package   EPGService\Parsers
  */
-final class IntegerParser {
+final class IntegerParser implements BaseParser {
 	/**
 	 * @param mixed $value
 	 *
