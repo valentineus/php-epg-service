@@ -1,0 +1,14 @@
+{
+  "name": "valentineus/epg-service",
+  "description": "Description",
+  "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Valentin Popov",
+      "email": "info@valentineus.link"
+    }
+  ],
+  "minimum-stability": "alpha",
+  "require": {}
+}
