@@ -28,7 +28,7 @@ class ServiceEnvironment {
 	/**
 	 * @var string
 	 */
-	protected const BASE_URL = 'http://xmldata.epgservice.ru/EPGService/hs/xmldata/%s/%s';
+	protected const BASE_URL = 'http://xmldata.epgservice.ru/EPGService/hs/xmldata/%s';
 
 	/**
 	 * @var string
@@ -52,11 +52,9 @@ class ServiceEnvironment {
 	}
 
 	/**
-	 * @param string $method
-	 *
 	 * @return string
 	 */
-	public function getUrl(string $method = ''): string {
-		return sprintf(self::BASE_URL, $this->key, $method);
+	public function getUrl(): string {
+		return sprintf(self::BASE_URL, $this->key);
 	}
 }
