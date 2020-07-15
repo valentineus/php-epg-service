@@ -29,10 +29,6 @@ use PHPUnit\Framework\TestCase;
  * @package   Tests\Parsers
  */
 final class IntegerParserTest extends TestCase {
-	public function testInvalid(): void {
-		self::assertNull(IntegerParser::get(null));
-	}
-
 	public function testValid(): void {
 		$number = Faker::create()->numberBetween(100, 200);
 		self::assertEquals($number, IntegerParser::get((string) $number));

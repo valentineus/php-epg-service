@@ -29,7 +29,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class StringParserTest extends TestCase {
 	public function testValid(): void {
-		$string = '<h1>Hello WorldÆØÅ!</h1>';
+		$string = '<h1>Hello World!</h1>';
 		self::assertEquals('Hello World!', StringParser::get($string));
 	}
 }

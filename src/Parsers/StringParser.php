@@ -19,8 +19,6 @@ declare(strict_types = 1);
 
 namespace EPGService\Parsers;
 
-use function is_string;
-
 /**
  * @copyright Copyright © 2020 “Valentin Popov” <info@valentineus.link>
  * @license   http://www.apache.org/licenses/LICENSE-2.0
@@ -30,11 +28,9 @@ final class StringParser {
 	/**
 	 * @param $value
 	 *
-	 * @return string|null
+	 * @return string
 	 */
-	public static function get($value): ?string {
-		$result = filter_var($value, FILTER_SANITIZE_STRING, FILTER_NULL_ON_FAILURE);
-
-		return is_string($result) ? trim($result) : null;
+	public static function get($value): string {
+		return filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
 	}
 }

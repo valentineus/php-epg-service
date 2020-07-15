@@ -28,9 +28,9 @@ final class IntegerParser {
 	/**
 	 * @param mixed $value
 	 *
-	 * @return int|null
+	 * @return int
 	 */
-	public static function get($value): ?int {
-		return filter_var($value, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+	public static function get($value): int {
+		return filter_var($value, FILTER_VALIDATE_INT);
 	}
 }
