@@ -35,13 +35,13 @@ final class GenreRepositoryTest extends TestCase {
 	public function testGetAction(): void {
 		$env = GetServiceEnvironment::get();
 
-		foreach (GenreRepository::create($env)->get() as $category) {
-			/** @var \EPGService\Entities\GenreEntity $category */
+		foreach (GenreRepository::create($env)->get() as $genre) {
+			/** @var \EPGService\Entities\GenreEntity $genre */
 
-			self::assertIsInt($category->id);
-			self::assertIsString($category->lang);
-			self::assertIsString($category->name);
-			self::assertIsString($category->version);
+			self::assertIsInt($genre->id);
+			self::assertIsString($genre->lang);
+			self::assertIsString($genre->name);
+			self::assertIsString($genre->version);
 		}
 	}
 }
