@@ -24,6 +24,7 @@ use function is_string;
 
 /**
  * @property-read string $base_id
+ * @property-read string $base_name
  * @property-read string $epg_id
  * @property-read string $geo_data
  * @property-read string $href
@@ -43,6 +44,11 @@ final class ChannelEntity {
 	 * @var string
 	 */
 	private string $base_id;
+
+	/**
+	 * @var string
+	 */
+	private string $base_name;
 
 	/**
 	 * @var string
@@ -94,6 +100,7 @@ final class ChannelEntity {
 	 */
 	private function __construct(array $payload) {
 		$this->base_id = $payload['base_id'];
+		$this->base_name = $payload['base_name'];
 		$this->epg_id = $payload['epg_id'];
 		$this->geo_data = $payload['geo_data'];
 		$this->href = $payload['href'];
@@ -114,6 +121,10 @@ final class ChannelEntity {
 	 */
 	public static function create(array $payload): ChannelEntity {
 		if (!is_string($payload['base_id'])) {
+			throw new RuntimeException('blah-blah-blah');
+		}
+
+		if (!is_string($payload['base_name'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 

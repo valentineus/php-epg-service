@@ -33,6 +33,7 @@ final class ChannelEntityTest extends TestCase {
 		$faker = Factory::create();
 
 		$base_id = $faker->unique()->sha256;
+		$base_name = $faker->unique()->sha256;
 		$epg_id = $faker->unique()->sha256;
 		$geo_data = $faker->unique()->sha256;
 		$href = $faker->unique()->sha256;
@@ -45,6 +46,7 @@ final class ChannelEntityTest extends TestCase {
 
 		$entity = ChannelEntity::create(compact(
 			'base_id',
+			'base_name',
 			'epg_id',
 			'geo_data',
 			'href',
@@ -57,6 +59,7 @@ final class ChannelEntityTest extends TestCase {
 		));
 
 		self::assertEquals($base_id, $entity->base_id);
+		self::assertEquals($base_name, $entity->base_name);
 		self::assertEquals($epg_id, $entity->epg_id);
 		self::assertEquals($geo_data, $entity->geo_data);
 		self::assertEquals($href, $entity->href);
