@@ -19,21 +19,22 @@ declare(strict_types = 1);
 
 namespace EPGService\Entities;
 
+use DateTime;
 use RuntimeException;
 use function is_string;
 
 /**
- * @property-read string $base_id
- * @property-read string $base_name
- * @property-read string $epg_id
- * @property-read string $geo_data
- * @property-read string $href
- * @property-read string $icon
- * @property-read string $id
- * @property-read string $lang
- * @property-read string $name
- * @property-read string $update_at
- * @property-read string $week
+ * @property-read string    $base_id
+ * @property-read string    $base_name
+ * @property-read string    $epg_id
+ * @property-read string    $geo_data
+ * @property-read string    $href
+ * @property-read string    $icon
+ * @property-read string    $id
+ * @property-read string    $lang
+ * @property-read string    $name
+ * @property-read \DateTime $update_at
+ * @property-read string    $week
  *
  * @copyright Copyright © 2020 “Valentin Popov” <info@valentineus.link>
  * @license   http://www.apache.org/licenses/LICENSE-2.0
@@ -86,9 +87,9 @@ final class ChannelEntity {
 	private string $name;
 
 	/**
-	 * @var string
+	 * @var \DateTime
 	 */
-	private string $update_at;
+	private DateTime $update_at;
 
 	/**
 	 * @var string
@@ -156,7 +157,7 @@ final class ChannelEntity {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_string($payload['update_at'])) {
+		if (!$payload['update_at'] instanceof DateTime) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 

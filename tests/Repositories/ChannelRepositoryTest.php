@@ -19,6 +19,7 @@ declare(strict_types = 1);
 
 namespace Tests\Repositories;
 
+use DateTime;
 use EPGService\Repositories\ChannelRepository;
 use PHPUnit\Framework\TestCase;
 use Tests\Utilities\GetServiceEnvironment;
@@ -44,8 +45,8 @@ final class ChannelRepositoryTest extends TestCase {
 			self::assertIsString($channel->id);
 			self::assertIsString($channel->lang);
 			self::assertIsString($channel->name);
-			self::assertIsString($channel->update_at);
 			self::assertIsString($channel->week);
+			self::isInstanceOf(DateTime::class, $channel->update_at);
 		}
 	}
 }

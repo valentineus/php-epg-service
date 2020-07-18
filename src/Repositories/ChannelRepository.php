@@ -19,6 +19,7 @@ declare(strict_types = 1);
 
 namespace EPGService\Repositories;
 
+use DateTime;
 use EPGService\Entities\ChannelEntity;
 use EPGService\Environments\ServiceEnvironment;
 use EPGService\Parsers\StringParser;
@@ -66,6 +67,7 @@ final class ChannelRepository implements BaseRepository {
 	 *
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \RuntimeException
+	 * @throws \Exception
 	 */
 	public function get(): array {
 		$response = $this->client->get(self::METHOD);
@@ -84,6 +86,8 @@ final class ChannelRepository implements BaseRepository {
 				continue;
 			}
 
+			$update = StringParser::get($element->update);
+
 			$result[] = ChannelEntity::create([
 				'base_id'   => StringParser::get($element->{'base-channel'}),
 				'base_name' => StringParser::get($element->{'base-channel'}['id']),
@@ -94,7 +98,7 @@ final class ChannelRepository implements BaseRepository {
 				'id'        => StringParser::get($element['id']),
 				'lang'      => StringParser::get($element->{'display-name'}['lang']),
 				'name'      => StringParser::get($element->{'base-channel'}),
-				'update_at' => StringParser::get($element->update),
+				'update_at' => new DateTime($update),
 				'week'      => StringParser::get($element->week),
 			]);
 		}
