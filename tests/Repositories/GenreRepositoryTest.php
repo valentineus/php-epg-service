@@ -31,6 +31,8 @@ use Tests\Utilities\GetServiceEnvironment;
 final class GenreRepositoryTest extends TestCase {
 	/**
 	 * @throws \GuzzleHttp\Exception\GuzzleException
+	 * @throws \RuntimeException
+	 * @throws \Exception
 	 */
 	public function testGetAction(): void {
 		$env = GetServiceEnvironment::get();

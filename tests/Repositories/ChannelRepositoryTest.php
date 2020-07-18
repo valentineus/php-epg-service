@@ -30,6 +30,11 @@ use Tests\Utilities\GetServiceEnvironment;
  * @package   Tests\Repositories
  */
 final class ChannelRepositoryTest extends TestCase {
+	/**
+	 * @throws \GuzzleHttp\Exception\GuzzleException
+	 * @throws \RuntimeException
+	 * @throws \Exception
+	 */
 	public function testGetAction(): void {
 		$env = GetServiceEnvironment::get();
 
