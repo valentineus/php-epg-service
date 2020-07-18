@@ -62,7 +62,7 @@ final class ChannelRepository implements BaseRepository {
 	}
 
 	/**
-	 * @return array
+	 * @return \EPGService\Entities\ChannelEntity[]
 	 *
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \RuntimeException
