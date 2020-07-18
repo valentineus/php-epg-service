@@ -44,6 +44,15 @@ final class ServicePresenter {
 	}
 
 	/**
+	 * @param \EPGService\Environments\ServiceEnvironment $environment
+	 *
+	 * @return \EPGService\Presenter\ServicePresenter
+	 */
+	public static function create(ServiceEnvironment $environment): ServicePresenter {
+		return new ServicePresenter($environment);
+	}
+
+	/**
 	 * @return \EPGService\Entities\CategoryEntity[]
 	 *
 	 * @throws \GuzzleHttp\Exception\GuzzleException
