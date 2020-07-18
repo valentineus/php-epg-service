@@ -25,20 +25,20 @@ use function is_array;
 use function is_string;
 
 /**
- * @property-read \EPGService\Entities\Program\CreditEntity[] $credits
- * @property-read \DateTime                                   $date
- * @property-read \DateTime                                   $start
- * @property-read \DateTime                                   $stop
- * @property-read string                                      $channel_id
- * @property-read string                                      $description
- * @property-read string                                      $parents_guide
- * @property-read string                                      $sub_title
- * @property-read string                                      $title
- * @property-read string                                      $year
- * @property-read string[]                                    $categories
- * @property-read string[]                                    $countries
- * @property-read string[]                                    $icons
- * @property-read string[]                                    $productions
+ * @property-read \EPGService\Entities\Program\CreditEntity[]|null $credits
+ * @property-read \DateTime                                        $date
+ * @property-read \DateTime                                        $start
+ * @property-read \DateTime                                        $stop
+ * @property-read string                                           $channel_id
+ * @property-read string|null                                      $description
+ * @property-read string|null                                      $parents_guide
+ * @property-read string|null                                      $sub_title
+ * @property-read string                                           $title
+ * @property-read string|null                                      $year
+ * @property-read string[]|null                                    $categories
+ * @property-read string[]|null                                    $countries
+ * @property-read string[]|null                                    $icons
+ * @property-read string[]|null                                    $productions
  *
  * @copyright Copyright © 2020 “Valentin Popov” <info@valentineus.link>
  * @license   http://www.apache.org/licenses/LICENSE-2.0
@@ -46,9 +46,9 @@ use function is_string;
  */
 final class ProgramEntity {
 	/**
-	 * @var string[]
+	 * @var string[]|null
 	 */
-	private array $categories;
+	private ?array $categories;
 
 	/**
 	 * @var string
@@ -56,14 +56,14 @@ final class ProgramEntity {
 	private string $channel_id;
 
 	/**
-	 * @var string[]
+	 * @var string[]|null
 	 */
-	private array $countries;
+	private ?array $countries;
 
 	/**
-	 * @var \EPGService\Entities\Program\CreditEntity[]
+	 * @var \EPGService\Entities\Program\CreditEntity[]|null
 	 */
-	private array $credits;
+	private ?array $credits;
 
 	/**
 	 * @var \DateTime
@@ -71,24 +71,24 @@ final class ProgramEntity {
 	private DateTime $date;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
-	private string $description;
+	private ?string $description;
 
 	/**
-	 * @var string[]
+	 * @var string[]|null
 	 */
-	private array $icons;
+	private ?array $icons;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
-	private string $parents_guide;
+	private ?string $parents_guide;
 
 	/**
-	 * @var string[]
+	 * @var string[]|null
 	 */
-	private array $productions;
+	private ?array $productions;
 
 	/**
 	 * @var \DateTime
@@ -101,9 +101,9 @@ final class ProgramEntity {
 	private DateTime $stop;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
-	private string $sub_title;
+	private ?string $sub_title;
 
 	/**
 	 * @var string
@@ -111,28 +111,28 @@ final class ProgramEntity {
 	private string $title;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
-	private string $year;
+	private ?string $year;
 
 	/**
 	 * @param array $payload
 	 */
 	private function __construct(array $payload) {
-		$this->categories = $payload['categories'];
+		$this->categories = $payload['categories'] ?? null;
 		$this->channel_id = $payload['channel_id'];
-		$this->countries = $payload['countries'];
-		$this->credits = $payload['credits'];
+		$this->countries = $payload['countries'] ?? null;
+		$this->credits = $payload['credits'] ?? null;
 		$this->date = $payload['date'];
-		$this->description = $payload['description'];
-		$this->icons = $payload['icons'];
-		$this->parents_guide = $payload['parents_guide'];
-		$this->productions = $payload['productions'];
+		$this->description = $payload['description'] ?? null;
+		$this->icons = $payload['icons'] ?? null;
+		$this->parents_guide = $payload['parents_guide'] ?? null;
+		$this->productions = $payload['productions'] ?? null;
 		$this->start = $payload['start'];
 		$this->stop = $payload['stop'];
-		$this->sub_title = $payload['sub_title'];
+		$this->sub_title = $payload['sub_title'] ?? null;
 		$this->title = $payload['title'];
-		$this->year = $payload['year'];
+		$this->year = $payload['year'] ?? null;
 	}
 
 	/**
@@ -143,7 +143,7 @@ final class ProgramEntity {
 	 * @throws \RuntimeException
 	 */
 	public static function create(array $payload): ProgramEntity {
-		if (!is_array($payload['categories'])) {
+		if (isset($payload['categories']) && !is_array($payload['categories'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
@@ -151,11 +151,11 @@ final class ProgramEntity {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_array($payload['countries'])) {
+		if (isset($payload['countries']) && !is_array($payload['countries'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_array($payload['credits'])) {
+		if (isset($payload['credits']) && !is_array($payload['credits'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
@@ -163,19 +163,19 @@ final class ProgramEntity {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_string($payload['description'])) {
+		if (isset($payload['description']) && !is_string($payload['description'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_array($payload['icons'])) {
+		if (isset($payload['icons']) && !is_array($payload['icons'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_string($payload['parents_guide'])) {
+		if (isset($payload['parents_guide']) && !is_string($payload['parents_guide'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_array($payload['productions'])) {
+		if (isset($payload['productions']) && !is_array($payload['productions'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
@@ -187,7 +187,7 @@ final class ProgramEntity {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_string($payload['sub_title'])) {
+		if (isset($payload['sub_title']) && !is_string($payload['sub_title'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
@@ -195,7 +195,7 @@ final class ProgramEntity {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		if (!is_string($payload['year'])) {
+		if (isset($payload['year']) && !is_string($payload['year'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
