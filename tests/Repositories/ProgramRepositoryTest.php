@@ -36,11 +36,12 @@ final class ProgramRepositoryTest extends TestCase {
 	 * @throws \Exception
 	 */
 	public function testGetAction(): void {
+		$week = date('Y-m-d', strtotime('this week'));
 		$env = GetServiceEnvironment::get();
 		$channels = ChannelRepository::create($env)->get();
 		$channel = array_shift($channels);
 
-		foreach (ProgramRepository::create($env, $channel->id)->get() as $program) {
+		foreach (ProgramRepository::create($env, $channel->id, $week)->get() as $program) {
 			/** @var \EPGService\Entities\ProgramEntity $program */
 
 			self::assertNotEmpty($program->channel_id);

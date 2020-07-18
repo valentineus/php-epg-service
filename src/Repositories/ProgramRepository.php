@@ -24,6 +24,7 @@ use EPGService\Entities\Program\CreditEntity;
 use EPGService\Entities\ProgramEntity;
 use EPGService\Environments\ServiceEnvironment;
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use RuntimeException;
 use function is_array;
 
@@ -49,11 +50,18 @@ final class ProgramRepository implements BaseRepository {
 	private Client $client;
 
 	/**
+	 * @var string
+	 */
+	private string $week;
+
+	/**
 	 * @param \EPGService\Environments\ServiceEnvironment $environment
 	 * @param string                                      $channel_id
+	 * @param string                                      $week
 	 */
-	private function __construct(ServiceEnvironment $environment, string $channel_id) {
+	private function __construct(ServiceEnvironment $environment, string $channel_id, string $week) {
 		$this->channel_id = $channel_id;
+		$this->week = $week;
 
 		$this->client = new Client([
 			'base_uri' => $environment->getUrl(),
@@ -63,11 +71,12 @@ final class ProgramRepository implements BaseRepository {
 	/**
 	 * @param \EPGService\Environments\ServiceEnvironment $environment
 	 * @param string                                      $channel_id
+	 * @param string                                      $week
 	 *
 	 * @return \EPGService\Repositories\ProgramRepository
 	 */
-	public static function create(ServiceEnvironment $environment, string $channel_id): ProgramRepository {
-		return new ProgramRepository($environment, $channel_id);
+	public static function create(ServiceEnvironment $environment, string $channel_id, string $week): ProgramRepository {
+		return new ProgramRepository($environment, $channel_id, $week);
 	}
 
 	/**
@@ -156,7 +165,12 @@ final class ProgramRepository implements BaseRepository {
 	 */
 	public function get(): array {
 		$uri = sprintf(self::METHOD, $this->channel_id);
-		$response = $this->client->get($uri);
+
+		$response = $this->client->get($uri, [
+			RequestOptions::QUERY => [
+				'week' => $this->week,
+			],
+		]);
 
 		$content = $response->getBody()->getContents();
 		$json = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
