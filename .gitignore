@@ -79,6 +79,7 @@ Temporary Items
 # PHPUnit
 /app/phpunit.xml
 /phpunit.xml
+/.env
 
 # Build data
 /build/
