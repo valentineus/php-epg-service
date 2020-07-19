@@ -20,7 +20,6 @@ declare(strict_types = 1);
 namespace EPGService\Entities;
 
 use RuntimeException;
-use function is_int;
 use function is_string;
 
 /**
@@ -36,9 +35,9 @@ use function is_string;
  */
 final class CountryEntity {
 	/**
-	 * @var int
+	 * @var string
 	 */
-	private int $id;
+	private string $id;
 
 	/**
 	 * @var string
@@ -79,7 +78,7 @@ final class CountryEntity {
 	 * @throws \RuntimeException
 	 */
 	public static function create(array $payload): CountryEntity {
-		if (!is_int($payload['id'])) {
+		if (!is_string($payload['id'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 

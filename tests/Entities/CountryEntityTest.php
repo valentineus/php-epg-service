@@ -32,7 +32,7 @@ final class CountryEntityTest extends TestCase {
 	public function testCreateEntity(): void {
 		$faker = Faker::create();
 
-		$id = $faker->numberBetween(1, 100);
+		$id = $faker->unique()->sha256;
 		$iso = $faker->countryCode;
 		$lang = $faker->languageCode;
 		$name = $faker->unique()->sha256;
