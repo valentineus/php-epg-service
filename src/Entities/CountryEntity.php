@@ -23,7 +23,7 @@ use RuntimeException;
 use function is_string;
 
 /**
- * @property-read int    $id
+ * @property-read string $id
  * @property-read string $iso
  * @property-read string $lang
  * @property-read string $name
