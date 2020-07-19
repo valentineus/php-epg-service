@@ -32,10 +32,10 @@ final class GenreEntityTest extends TestCase {
 	public function testCreateEntity(): void {
 		$faker = Faker::create();
 
-		$id = $faker->numberBetween(1, 999);
-		$lang = $faker->languageCode;
-		$name = $faker->word;
-		$version = $faker->sha256;
+		$id = $faker->unique()->sha256;
+		$lang = $faker->unique()->sha256;
+		$name = $faker->unique()->sha256;
+		$version = $faker->unique()->sha256;
 
 		$entity = GenreEntity::create(compact('id', 'lang', 'name', 'version'));
 

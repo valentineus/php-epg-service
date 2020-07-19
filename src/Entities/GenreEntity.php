@@ -20,11 +20,10 @@ declare(strict_types = 1);
 namespace EPGService\Entities;
 
 use RuntimeException;
-use function is_int;
 use function is_string;
 
 /**
- * @property-read int    $id
+ * @property-read string $id
  * @property-read string $lang
  * @property-read string $name
  * @property-read string $version
@@ -35,9 +34,9 @@ use function is_string;
  */
 final class GenreEntity {
 	/**
-	 * @var int
+	 * @var string
 	 */
-	private int $id;
+	private string $id;
 
 	/**
 	 * @var string
@@ -55,20 +54,17 @@ final class GenreEntity {
 	private string $version;
 
 	/**
-	 * @param int    $id
-	 * @param string $lang
-	 * @param string $name
-	 * @param string $version
+	 * @param array $payload
 	 */
-	private function __construct(int $id, string $lang, string $name, string $version) {
-		$this->id = $id;
-		$this->lang = $lang;
-		$this->name = $name;
-		$this->version = $version;
+	private function __construct(array $payload) {
+		$this->id = $payload['id'];
+		$this->lang = $payload['lang'];
+		$this->name = $payload['name'];
+		$this->version = $payload['version'];
 	}
 
 	public static function create(array $payload): GenreEntity {
-		if (!is_int($payload['id'])) {
+		if (!is_string($payload['id'])) {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
@@ -84,7 +80,7 @@ final class GenreEntity {
 			throw new RuntimeException('blah-blah-blah');
 		}
 
-		return new GenreEntity($payload['id'], $payload['lang'], $payload['name'], $payload['version']);
+		return new GenreEntity($payload);
 	}
 
 	/**
