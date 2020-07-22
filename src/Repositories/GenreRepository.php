@@ -91,7 +91,7 @@ final class GenreRepository implements BaseRepository {
 			}
 
 			$result[] = GenreEntity::create([
-				'id'      => IntegerParser::get($element['id']),
+				'id'      => StringParser::get($element['id']),
 				'lang'    => StringParser::get($element->name['lang']),
 				'name'    => StringParser::get($element->name),
 				'version' => StringParser::get($element['version']),
