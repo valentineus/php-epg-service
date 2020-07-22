@@ -17,7 +17,7 @@
     }
   },
   "require": {
-    "guzzlehttp/guzzle": "^7.0",
+    "guzzlehttp/guzzle": "^6.0",
     "ext-SimpleXML": "^7.4"
   },
   "require-dev": {
