@@ -30,6 +30,7 @@ use Tests\Utilities\GetServiceEnvironment;
  * @package   Tests\Repositories
  */
 final class ChannelRepositoryTest extends TestCase {
+
 	/**
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \RuntimeException
@@ -41,13 +42,15 @@ final class ChannelRepositoryTest extends TestCase {
 		foreach (ChannelRepository::create($env)->get() as $channel) {
 			/** @var \EPGService\Entities\ChannelEntity $channel */
 
+			self::assertIsString($channel->id);
+			self::assertNotEmpty($channel->id);
+
 			self::assertIsString($channel->base_id);
 			self::assertIsString($channel->base_name);
 			self::assertIsString($channel->epg_id);
 			self::assertIsString($channel->geo_data);
 			self::assertIsString($channel->href);
 			self::assertIsString($channel->icon);
-			self::assertIsString($channel->id);
 			self::assertIsString($channel->lang);
 			self::assertIsString($channel->name);
 			self::assertIsString($channel->week);

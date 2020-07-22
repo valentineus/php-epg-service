@@ -21,7 +21,6 @@ namespace EPGService\Repositories;
 
 use EPGService\Entities\CategoryEntity;
 use EPGService\Environments\ServiceEnvironment;
-use EPGService\Parsers\IntegerParser;
 use EPGService\Parsers\StringParser;
 use GuzzleHttp\Client;
 use RuntimeException;
@@ -35,6 +34,7 @@ use function simplexml_load_string;
  * @package   EPGService\Repositories
  */
 final class CategoryRepository implements BaseRepository {
+
 	/**
 	 * @var string
 	 */
@@ -92,7 +92,7 @@ final class CategoryRepository implements BaseRepository {
 			}
 
 			$result[] = CategoryEntity::create([
-				'id'      => IntegerParser::get($element['id']),
+				'id'      => StringParser::get($element['id']),
 				'lang'    => StringParser::get($element->name['lang']),
 				'name'    => StringParser::get($element->name),
 				'version' => StringParser::get($element['version']),

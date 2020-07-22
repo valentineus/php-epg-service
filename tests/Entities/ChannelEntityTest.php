@@ -41,7 +41,7 @@ final class ChannelEntityTest extends TestCase {
 		$id = $faker->unique()->sha256;
 		$lang = $faker->unique()->sha256;
 		$name = $faker->unique()->sha256;
-		$update_at = $faker->unique()->sha256;
+		$update_at = $faker->unique()->dateTime;
 		$week = $faker->unique()->sha256;
 
 		$entity = ChannelEntity::create(compact(

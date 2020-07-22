@@ -29,6 +29,7 @@ use Tests\Utilities\GetServiceEnvironment;
  * @package   Tests\Repositories
  */
 final class GenreRepositoryTest extends TestCase {
+
 	/**
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \RuntimeException
@@ -40,10 +41,10 @@ final class GenreRepositoryTest extends TestCase {
 		foreach (GenreRepository::create($env)->get() as $genre) {
 			/** @var \EPGService\Entities\GenreEntity $genre */
 
-			self::assertIsInt($genre->id);
-			self::assertIsString($genre->lang);
-			self::assertIsString($genre->name);
-			self::assertIsString($genre->version);
+			self::assertNotEmpty($genre->id);
+			self::assertNotEmpty($genre->lang);
+			self::assertNotEmpty($genre->name);
+			self::assertNotEmpty($genre->version);
 		}
 	}
 }

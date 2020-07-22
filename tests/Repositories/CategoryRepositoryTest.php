@@ -29,6 +29,7 @@ use Tests\Utilities\GetServiceEnvironment;
  * @package   Tests\Repositories
  */
 final class CategoryRepositoryTest extends TestCase {
+
 	/**
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \RuntimeException
@@ -40,10 +41,10 @@ final class CategoryRepositoryTest extends TestCase {
 		foreach (CategoryRepository::create($env)->get() as $category) {
 			/** @var \EPGService\Entities\CategoryEntity $category */
 
-			self::assertIsInt($category->id);
-			self::assertIsString($category->lang);
-			self::assertIsString($category->name);
-			self::assertIsString($category->version);
+			self::assertNotEmpty($category->id);
+			self::assertNotEmpty($category->lang);
+			self::assertNotEmpty($category->name);
+			self::assertNotEmpty($category->version);
 		}
 	}
 }
